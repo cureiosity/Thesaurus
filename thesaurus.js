@@ -25,6 +25,7 @@ function addDefBoxes() {
     defBox.classList.add("definitions")
     defBox.id = `def-box-${i + 1}`
     main.appendChild(defBox)
+    defBox.addEventListener("click", showResults)
   }
 }
 
@@ -69,4 +70,58 @@ function definitionsGen() {
   defBox2.innerText = thesaurusData[def2Counter][1].dt[0][1]
   def1Counter += 2
   def2Counter += 2
+}
+
+function showResults() {
+  clearDefinitions()
+  addResultsBoxes()
+  resultsGen()
+}
+
+function clearDefinitions() {
+  const definitionsBoxes = document.querySelectorAll(".definitions")
+  definitionsBoxes.forEach((box) => box.remove())
+  const getMore = document.querySelector("#get-more")
+  getMore.remove()
+}
+
+function addResultsBoxes() {
+  let synBox = document.createElement("div")
+  synBox.classList.add("results")
+  synBox.id = "syn-box"
+  main.appendChild(synBox)
+
+  let antBox = document.createElement("div")
+  antBox.classList.add("results")
+  antBox.id = "ant-box"
+  main.appendChild(antBox)
+}
+
+function resultsGen() {
+  const synBox = document.querySelector("#syn-box")
+  const antBox = document.querySelector("#ant-box")
+  const synonyms = []
+  const antonyms = []
+  if (!!thesaurusData[def1Counter][1].syn_list) {
+    const synonymData = thesaurusData[def1Counter][1].syn_list
+    synonymData.forEach((dataPoint) => {
+      dataPoint.forEach((subElement) => {
+        synonyms.push(subElement.wd)
+      })
+    })
+  } else {
+    synonyms.push("none")
+  }
+  if (!!thesaurusData[def1Counter][1].ant_list) {
+    const antonymData = thesaurusData[def1Counter][1].ant_list
+    antonymData.forEach((dataPoint) => {
+      dataPoint.forEach((subElement) => {
+        antonyms.push(subElement.wd)
+      })
+    })
+  } else {
+    antonyms.push("none")
+  }
+  synBox.innerText = [...synonyms]
+  antBox.innerText = [...antonyms]
 }

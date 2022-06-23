@@ -19,9 +19,16 @@ h1 {
 .definitions {
   border: 1px solid black;
   text-align: left;
+  width: 75vw;
 }
 
 #get-more {
   text-decoration: underline;
   text-align: center;
+}
+
+.results {
+  border: 1px solid black;
+  text-align: left;
+  width: 75vw;
 }
