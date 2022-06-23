@@ -15,3 +15,13 @@ body {
 h1 {
   text-align: center;
 }
+
+.definitions {
+  border: 1px solid black;
+  text-align: left;
+}
+
+#get-more {
+  text-decoration: underline;
+  text-align: center;
+}
