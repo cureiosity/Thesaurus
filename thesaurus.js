@@ -24,8 +24,9 @@ function addDefBoxes() {
     let defBox = document.createElement("div")
     defBox.classList.add("definitions")
     defBox.id = `def-box-${i + 1}`
+    defBox.dataset.defIndex = i
     main.appendChild(defBox)
-    defBox.addEventListener("click", showResults)
+    defBox.addEventListener("click", (event) => showResults(event))
   }
 }
 
@@ -68,14 +69,17 @@ function definitionsGen() {
   const defBox2 = document.querySelector("#def-box-2")
   defBox1.innerText = thesaurusData[def1Counter][1].dt[0][1]
   defBox2.innerText = thesaurusData[def2Counter][1].dt[0][1]
+  defBox1.dataset.defIndex = def1Counter
+  defBox2.dataset.defIndex = def2Counter
   def1Counter += 2
   def2Counter += 2
 }
 
-function showResults() {
+function showResults(event) {
+  const defIndex = event.target.dataset.defIndex
   clearDefinitions()
   addResultsBoxes()
-  resultsGen()
+  resultsGen(defIndex)
 }
 
 function clearDefinitions() {
@@ -97,13 +101,14 @@ function addResultsBoxes() {
   main.appendChild(antBox)
 }
 
-function resultsGen() {
+function resultsGen(defIndex) {
+  console.log(defIndex)
   const synBox = document.querySelector("#syn-box")
   const antBox = document.querySelector("#ant-box")
   const synonyms = []
   const antonyms = []
-  if (!!thesaurusData[def1Counter][1].syn_list) {
-    const synonymData = thesaurusData[def1Counter][1].syn_list
+  if (!!thesaurusData[defIndex][1].syn_list) {
+    const synonymData = thesaurusData[defIndex][1].syn_list
     synonymData.forEach((dataPoint) => {
       dataPoint.forEach((subElement) => {
         synonyms.push(subElement.wd)
@@ -112,8 +117,8 @@ function resultsGen() {
   } else {
     synonyms.push("none")
   }
-  if (!!thesaurusData[def1Counter][1].ant_list) {
-    const antonymData = thesaurusData[def1Counter][1].ant_list
+  if (!!thesaurusData[defIndex][1].ant_list) {
+    const antonymData = thesaurusData[defIndex][1].ant_list
     antonymData.forEach((dataPoint) => {
       dataPoint.forEach((subElement) => {
         antonyms.push(subElement.wd)
