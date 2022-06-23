@@ -10,11 +10,30 @@ searchButton.addEventListener("click", (event) => showDefinitions(event))
 
 function showDefinitions(event) {
   clearSearchFeatures()
+  addDefBoxes()
+  addMoreButton()
   fetchThesaurusData(event)
 }
 
 function clearSearchFeatures() {
   searchFeaturesDiv.remove()
+}
+
+function addDefBoxes() {
+  for (let i = 0; i < 2; i++) {
+    let defBox = document.createElement("div")
+    defBox.classList.add("definitions")
+    defBox.id = `def-box-${i + 1}`
+    main.appendChild(defBox)
+  }
+}
+
+function addMoreButton() {
+  let getMore = document.createElement("div")
+  getMore.id = "get-more"
+  getMore.innerText = "more..."
+  main.appendChild(getMore)
+  getMore.addEventListener("click", definitionsGen)
 }
 
 function fetchThesaurusData(event) {
@@ -32,41 +51,22 @@ function fetchThesaurusData(event) {
     .then((result) => {
       for (let i = 0; i < result.length; i++) {
         for (let j = 0; j < result[i].def[0].sseq.length; j++) {
-          thesaurusData.push(result[i].def[0].sseq[j][0][1].dt[0][1])
+          thesaurusData.push(result[i].def[0].sseq[j][0])
+          console.log(result[i].def[0].sseq[j][0][1].dt[0][1])
         }
       }
-      console.log(thesaurusData)
-      initialDefinitionsGen()
+      definitionsGen()
     })
     .catch((err) => {
       console.error("Error --- ", err)
     })
 }
 
-function initialDefinitionsGen() {
-  for (let i = 0; i < 2; i++) {
-    let wordDefinition = document.createElement("div")
-    wordDefinition.classList.add("definitions")
-    wordDefinition.id = `def-box-${i + 1}`
-    wordDefinition.innerText = thesaurusData[i]
-    main.appendChild(wordDefinition)
-  }
-  def1Counter += 2
-  def2Counter += 2
-  let getMore = document.createElement("div")
-  getMore.id = "get-more"
-  getMore.innerText = "more..."
-  main.appendChild(getMore)
-  getMore.addEventListener("click", moreDefinitionsGen)
-}
-
-function moreDefinitionsGen() {
+function definitionsGen() {
   const defBox1 = document.querySelector("#def-box-1")
   const defBox2 = document.querySelector("#def-box-2")
-  defBox1.innerText = thesaurusData[def1Counter]
-  defBox2.innerText = thesaurusData[def2Counter]
+  defBox1.innerText = thesaurusData[def1Counter][1].dt[0][1]
+  defBox2.innerText = thesaurusData[def2Counter][1].dt[0][1]
   def1Counter += 2
   def2Counter += 2
-  const getMore = document.querySelector("#get-more")
-  getMore.addEventListener("click", moreDefinitionsGen)
 }
