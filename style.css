@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  text-align: center;
 }
 
 body {
@@ -12,8 +13,13 @@ body {
   align-content: space-around;
 }
 
-h1 {
-  text-align: center;
+header {
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+#search-input {
+  text-align: left;
 }
 
 .definitions {
@@ -24,7 +30,6 @@ h1 {
 
 #get-more {
   text-decoration: underline;
-  text-align: center;
 }
 
 .results {
