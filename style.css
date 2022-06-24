@@ -1,6 +1,8 @@
 * {
   box-sizing: border-box;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -11,15 +13,47 @@ body {
   justify-content: space-evenly;
   align-items: center;
   align-content: space-around;
+  background-color: #6D9F71;
 }
 
 header {
   font-size: xx-large;
   font-weight: bolder;
+  color: #C1EEFF;
+}
+
+/* main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+} */
+
+#search-features-div {
+  position: relative;
 }
 
 #search-input {
   text-align: left;
+  border-radius: 2vw;
+  background-color: rgb(244, 169, 72);
+  border: 0.5px solid white;
+  height: 8vh;
+  width: 75vw;
+}
+
+#search-button {
+  position: absolute;
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  right: 4%;
+  top: 25%;
+}
+
+#search-button img {
+  width: 4vh;
+  height: 4vh;
 }
 
 .definitions {

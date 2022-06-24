@@ -17,8 +17,11 @@ function createBaseState() {
   const searchButton = document.createElement("button")
   searchButton.id = "search-button"
   searchButton.type = "submit"
-  searchButton.innerText = "search"
+  // searchButton.innerText = "search"
   thesaurusForm.appendChild(searchButton)
+  const searchImage = document.createElement("img")
+  searchImage.src = "search.png"
+  searchButton.appendChild(searchImage)
   searchButton.addEventListener("click", showDefinitions)
 }
 createBaseState()
