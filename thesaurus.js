@@ -121,7 +121,7 @@ function resultsGen(defIndex) {
       })
     })
   } else {
-    synonyms.push("none")
+    synonyms.push("(no synonyms in the database)")
   }
   if (!!thesaurusData[defIndex][1].ant_list) {
     const antonymData = thesaurusData[defIndex][1].ant_list
@@ -131,7 +131,7 @@ function resultsGen(defIndex) {
       })
     })
   } else {
-    antonyms.push("none")
+    antonyms.push("(no antonyms in the database)")
   }
 
   let synInfo = ""
