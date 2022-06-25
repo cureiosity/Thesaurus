@@ -12,15 +12,15 @@ function createBaseState() {
   const inputBox = document.createElement("input")
   inputBox.id = "search-input"
   inputBox.name = "search-input"
-  inputBox.type = "search"
+  inputBox.type = "text"
+  inputBox.autofocus = true
   thesaurusForm.appendChild(inputBox)
   const searchButton = document.createElement("button")
   searchButton.id = "search-button"
   searchButton.type = "submit"
-  // searchButton.innerText = "search"
   thesaurusForm.appendChild(searchButton)
   const searchImage = document.createElement("img")
-  searchImage.src = "search.png"
+  searchImage.src = "images/search.png"
   searchButton.appendChild(searchImage)
   searchButton.addEventListener("click", showDefinitions)
 }
@@ -43,6 +43,7 @@ function showDefinitions(event) {
   searchFeaturesDiv = document.querySelector("#search-features-div")
   inputBox = document.querySelector("#search-input")
   searchButton = document.querySelector("#search-button")
+  document.body.style.justifyContent = "space-around"
   clearSearchFeatures()
   addSearchTerm()
   addDefBoxes()
@@ -64,12 +65,21 @@ function addSearchTerm() {
 
 function addDefBoxes() {
   for (let i = 0; i < 2; i++) {
+    let defBoxContainer = document.createElement("div")
+    defBoxContainer.classList.add("def-box-containers")
+    defBoxContainer.id = `def-box-container-${i + 1}`
+    defBoxContainer.dataset.defIndex = i
     let defBox = document.createElement("div")
     defBox.classList.add("definitions")
     defBox.id = `def-box-${i + 1}`
     defBox.dataset.defIndex = i
-    main.appendChild(defBox)
-    defBox.addEventListener("click", (event) => showResults(event))
+    let fwdIcon = document.createElement("div")
+    fwdIcon.classList = "fwd-icon"
+    fwdIcon.innerText = ">"
+    main.appendChild(defBoxContainer)
+    defBoxContainer.appendChild(defBox)
+    defBoxContainer.appendChild(fwdIcon)
+    defBoxContainer.addEventListener("click", (event) => showResults(event))
   }
 
   function showResults(event) {
@@ -80,8 +90,8 @@ function addDefBoxes() {
   }
 }
 function clearDefinitions() {
-  const definitionsBoxes = document.querySelectorAll(".definitions")
-  definitionsBoxes.forEach((box) => box.remove())
+  const definitionsContainers = document.querySelectorAll(".def-box-containers")
+  definitionsContainers.forEach((container) => container.remove())
   const getMore = document.querySelector("#get-more")
   getMore.remove()
 }
@@ -101,8 +111,8 @@ function addResultsBoxes() {
 function resultsGen(defIndex) {
   const synBox = document.querySelector("#syn-box")
   const antBox = document.querySelector("#ant-box")
-  const synonyms = []
-  const antonyms = []
+  let synonyms = []
+  let antonyms = []
   if (!!thesaurusData[defIndex][1].syn_list) {
     const synonymData = thesaurusData[defIndex][1].syn_list
     synonymData.forEach((dataPoint) => {
@@ -123,8 +133,23 @@ function resultsGen(defIndex) {
   } else {
     antonyms.push("none")
   }
-  synBox.innerText = [...synonyms]
-  antBox.innerText = [...antonyms]
+
+  let synInfo = ""
+  let antInfo = ""
+
+  synonyms.forEach((synonym) => {
+    synInfo += `<p>${synonym}</p>`
+  })
+
+  antonyms.forEach((antonym) => {
+    antInfo += `<p>${antonym}</p>`
+  })
+
+  synBox.innerText = ""
+  antBox.innerText = ""
+
+  synBox.insertAdjacentHTML("beforeend", synInfo)
+  antBox.insertAdjacentHTML("beforeend", antInfo)
 }
 
 function fetchThesaurusData(event) {
@@ -175,8 +200,12 @@ function addMoreButton() {
 function addBackButton() {
   let goBack = document.createElement("button")
   goBack.id = "back"
-  goBack.innerText = "Back to Search"
+  // goBack.innerText = "Back to Search"
+  let backImg = document.createElement("img")
+  backImg.id = "back-img"
+  backImg.src = "images/back.png"
   footer.appendChild(goBack)
+  goBack.appendChild(backImg)
   goBack.addEventListener("click", returnToBaseState)
 }
 
@@ -186,5 +215,6 @@ function returnToBaseState() {
   thesaurusData.length = 0
   def1Counter = 0
   def2Counter = 1
+  document.body.style.justifyContent = "space-evenly"
   createBaseState()
 }
