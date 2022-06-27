@@ -29,6 +29,7 @@ main {
 
 #search-features-div {
   position: relative;
+  transition: all 500ms ease;
 }
 
 #search-input {
@@ -61,6 +62,7 @@ main {
   color: black;
   font-size: 3.5em;
   text-align: center;
+  transition: all 500ms ease;
 }
 
 .def-box-containers {
@@ -75,6 +77,7 @@ main {
   align-items: center;
   text-align: left;
   font-size: 2em;
+  transition: all 500ms ease;
 }
 
 #get-more {
@@ -82,11 +85,13 @@ main {
   color: black;
   text-align: center;
   font-size: 2em;
+  transition: all 500ms ease;
 }
 
 #back {
   background-color: transparent;
   border: none;
+  transition: all 500ms ease;
 }
 
 #back img {
@@ -104,6 +109,7 @@ main {
   max-height: 50vh;
   border-radius: 1.5em;
   font-size: 2em;
+  transition: all 500ms ease;
 }
 
 .results p {

@@ -6,7 +6,7 @@ function createBaseState() {
   // letterImg.classList.add('letter-img')
   // letterImg.src = 'images/letter-a.png'
   // letterImgContainer.appendChild(letterImg)
-  
+
   const main = document.createElement("main")
   document.body.appendChild(main)
   const footer = document.createElement("footer")
@@ -61,7 +61,9 @@ function showDefinitions(event) {
 }
 
 function clearSearchFeatures() {
-  searchFeaturesDiv.remove()
+  searchFeaturesDiv.style.transform = "translateX(-125%)"
+  setTimeout(() => searchFeaturesDiv.remove(), 500)
+  // searchFeaturesDiv.remove()
 }
 
 function addSearchTerm() {
