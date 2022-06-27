@@ -16,7 +16,7 @@ body {
 }
 
 header {
-  font-size: xx-large;
+  font-size: 4em;
   font-weight: bolder;
   color: black;
 }
@@ -39,7 +39,7 @@ main {
   height: 8vh;
   width: 88vw;
   font-size: 2em;
-  padding-left: 10vw;
+  padding-left: 5vw;
   padding-right: 10vw;
 }
 
@@ -54,11 +54,12 @@ main {
 #search-button img {
   width: 4vh;
   height: 4vh;
+  cursor: pointer;
 }
 
 #search-term {
   color: black;
-  font-size: 2em;
+  font-size: 3.5em;
   text-align: center;
 }
 
@@ -73,12 +74,14 @@ main {
   justify-content: space-between;
   align-items: center;
   text-align: left;
+  font-size: 2em;
 }
 
 #get-more {
   text-decoration: underline;
   color: black;
   text-align: center;
+  font-size: 2em;
 }
 
 #back {
@@ -98,12 +101,40 @@ main {
   text-align: left;
   width: 75vw;
   background-color: white;
-  max-height: 60vh;
+  max-height: 50vh;
   border-radius: 1.5em;
+  font-size: 2em;
 }
 
 .results p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 0.2;
+  margin-bottom: 0.2em;
   text-align: center;
 }
+
+@media screen and (min-width: 992px) {
+  #search-input {
+    text-align: left;
+    border-radius: 8vw;
+    background-color: white;
+    border: 0.5vw solid black;
+    height: 8vh;
+    width: 40vw;
+    font-size: 2em;
+    padding-left: 5vw;
+    padding-right: 10vw;
+  }
+}
+
+/* .letter-img-container {
+  position: absolute;
+  width: 30px;
+  height: 60px;
+  top: 25%;
+  right: 50%;
+  z-index: -1;
+}
+
+.letter-img {
+  object-fit: cover;
+} */

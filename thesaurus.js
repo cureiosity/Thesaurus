@@ -1,4 +1,12 @@
 function createBaseState() {
+  // const letterImgContainer = document.createElement('div')
+  // letterImgContainer.classList.add('letter-img-container')
+  // document.body.appendChild(letterImgContainer)
+  // const letterImg = document.createElement('img')
+  // letterImg.classList.add('letter-img')
+  // letterImg.src = 'images/letter-a.png'
+  // letterImgContainer.appendChild(letterImg)
+  
   const main = document.createElement("main")
   document.body.appendChild(main)
   const footer = document.createElement("footer")
@@ -168,7 +176,6 @@ function fetchThesaurusData(event) {
       for (let i = 0; i < result.length; i++) {
         for (let j = 0; j < result[i].def[0].sseq.length; j++) {
           thesaurusData.push(result[i].def[0].sseq[j][0])
-          console.log(result[i].def[0].sseq[j][0][1].dt[0][1])
         }
       }
       definitionsGen()
