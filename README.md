@@ -45,7 +45,6 @@
 
 - an input box for the user to put in the word they want to look up
 - a search button to trigger a function that fetches API data based on the word that was searched
-- a media query to determine the screen size of the user's device in order to display the search results accordingly
 - content boxes to display the array of definitions for the search term
 - a button to trigger a function that shows the next few definitions if the one the user is looking for isn't in the first three that get displayed
 - event listeners for the definition content boxes buttons to trigger a function that fetches synonyms and antonyms from the API that match the selected definition
