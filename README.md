@@ -1,3 +1,5 @@
+**App Web Address:** https://cureiosity.github.io/Thesaurus/
+
 **App Title:** Thesaurus
 
 **App Description:** online thesaurus; displays synonyms and antonyms for words and phrases
