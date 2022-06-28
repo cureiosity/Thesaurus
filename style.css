@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Asap", sans-serif;
 }
 
 body {
@@ -12,13 +13,15 @@ body {
   justify-content: space-evenly;
   align-items: center;
   align-content: space-around;
-  background-color: lightgray;
+  background-image: linear-gradient(to bottom right, #03f0c8, #214e34);
 }
 
 header {
-  font-size: 4em;
+  font-size: 2.5em;
   font-weight: bolder;
   color: black;
+  font-family: "Bungee Inline", cursive;
+  text-decoration: overline;
 }
 
 main {
@@ -35,7 +38,7 @@ main {
 #search-input {
   text-align: left;
   border-radius: 8vw;
-  background-color: white;
+  background-color: #7fbeab;
   border: 0.5vw solid black;
   height: 8vh;
   width: 88vw;
@@ -65,11 +68,20 @@ main {
   transition: all 500ms ease;
 }
 
+.bring-from-left {
+  transform: translateX(-125%);
+}
+
+.bring-from-right {
+  transform: translateX(125%);
+}
+
 .def-box-containers {
+  cursor: pointer;
   border: none;
   text-align: left;
-  width: 75vw;
-  background-color: white;
+  width: 80vw;
+  background-color: 7fbeab;
   padding: 1vh 2.5vh 1vh 3vh;
   border-radius: 1.5em 1em;
   display: flex;
@@ -77,10 +89,21 @@ main {
   align-items: center;
   text-align: left;
   font-size: 2em;
+  background-color: #7fbeab;
   transition: all 500ms ease;
 }
 
+.definitions {
+  padding-right: 0.5em;
+}
+
+.def-box-containers * {
+  background-color: #7fbeab;
+}
+
 #get-more {
+  cursor: pointer;
+  width: auto;
   text-decoration: underline;
   color: black;
   text-align: center;
@@ -89,6 +112,7 @@ main {
 }
 
 #back {
+  cursor: pointer;
   background-color: transparent;
   border: none;
   transition: all 500ms ease;
@@ -100,6 +124,7 @@ main {
 }
 
 .results {
+  background-color: #7fbeab;
   display: flex;
   flex-flow: column wrap;
   border: none;
@@ -118,29 +143,26 @@ main {
   text-align: center;
 }
 
+#syn-box,
+#ant-box {
+  background-color: #7fbeab;
+}
+
+#ant-box > p {
+  font-style: italic;
+}
+
 @media screen and (min-width: 992px) {
   #search-input {
-    text-align: left;
-    border-radius: 8vw;
-    background-color: white;
-    border: 0.5vw solid black;
-    height: 8vh;
     width: 40vw;
-    font-size: 2em;
-    padding-left: 5vw;
-    padding-right: 10vw;
+  }
+
+  .def-box-containers {
+    width: 60vw;
+    cursor: pointer;
+  }
+
+  .sky-blue {
+    background-color: skyblue;
   }
 }
-
-/* .letter-img-container {
-  position: absolute;
-  width: 30px;
-  height: 60px;
-  top: 25%;
-  right: 50%;
-  z-index: -1;
-}
-
-.letter-img {
-  object-fit: cover;
-} */

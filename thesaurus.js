@@ -1,12 +1,4 @@
 function createBaseState() {
-  // const letterImgContainer = document.createElement('div')
-  // letterImgContainer.classList.add('letter-img-container')
-  // document.body.appendChild(letterImgContainer)
-  // const letterImg = document.createElement('img')
-  // letterImg.classList.add('letter-img')
-  // letterImg.src = 'images/letter-a.png'
-  // letterImgContainer.appendChild(letterImg)
-
   const main = document.createElement("main")
   document.body.appendChild(main)
   const footer = document.createElement("footer")
@@ -55,20 +47,30 @@ function showDefinitions(event) {
   clearSearchFeatures()
   addSearchTerm()
   addDefBoxes()
-  fetchThesaurusData(event)
   addMoreButton()
   addBackButton()
+  fetchThesaurusData(event)
+}
+
+function bringFromRight() {
+  let elements = document.querySelectorAll(".bring-from-right")
+  setTimeout(() => {
+    elements.forEach((element) => {
+      element.style.transform = "translateX(0%)"
+    })
+  }, 300)
 }
 
 function clearSearchFeatures() {
-  searchFeaturesDiv.style.transform = "translateX(-125%)"
-  setTimeout(() => searchFeaturesDiv.remove(), 500)
-  // searchFeaturesDiv.remove()
+  // searchFeaturesDiv.style.transform = "translateX(-125%)"
+  // setTimeout(() => searchFeaturesDiv.remove(), 500)
+  searchFeaturesDiv.remove()
 }
 
 function addSearchTerm() {
   const searchTerm = document.createElement("div")
   searchTerm.id = "search-term"
+  searchTerm.classList.add("bring-from-right")
   searchTerm.innerText = inputBox.value
   main.appendChild(searchTerm)
 }
@@ -77,6 +79,7 @@ function addDefBoxes() {
   for (let i = 0; i < 2; i++) {
     let defBoxContainer = document.createElement("div")
     defBoxContainer.classList.add("def-box-containers")
+    defBoxContainer.classList.add("bring-from-right")
     defBoxContainer.id = `def-box-container-${i + 1}`
     defBoxContainer.dataset.defIndex = i
     let defBox = document.createElement("div")
@@ -90,6 +93,12 @@ function addDefBoxes() {
     defBoxContainer.appendChild(defBox)
     defBoxContainer.appendChild(fwdIcon)
     defBoxContainer.addEventListener("click", (event) => showResults(event))
+    // defBoxContainer.addEventListener("mouseover", (event) => hoverBlue(event))
+    // defBox.addEventListener("mouseover", (event) => hoverBlue(event))
+    // fwdIcon.addEventListener("mouseover", (event) => hoverBlue(event))
+    // defBoxContainer.addEventListener("mouseout", (event) => hoverBlue(event))
+    // defBox.addEventListener("mouseout", (event) => hoverBlue(event))
+    // fwdIcon.addEventListener("mouseout", (event) => hoverBlue(event))
   }
 
   function showResults(event) {
@@ -109,11 +118,13 @@ function clearDefinitions() {
 function addResultsBoxes() {
   let synBox = document.createElement("div")
   synBox.classList.add("results")
+  synBox.classList.add("bring-from-right")
   synBox.id = "syn-box"
   main.appendChild(synBox)
 
   let antBox = document.createElement("div")
   antBox.classList.add("results")
+  antBox.classList.add("bring-from-right")
   antBox.id = "ant-box"
   main.appendChild(antBox)
 }
@@ -160,6 +171,7 @@ function resultsGen(defIndex) {
 
   synBox.insertAdjacentHTML("beforeend", synInfo)
   antBox.insertAdjacentHTML("beforeend", antInfo)
+  bringFromRight()
 }
 
 function fetchThesaurusData(event) {
@@ -183,6 +195,8 @@ function fetchThesaurusData(event) {
       definitionsGen()
     })
     .catch((err) => {
+      let defBox1 = document.querySelector("#def-box-1")
+      defBox1.innerText = "The API isn't working right now"
       console.error("Error --- ", err)
     })
 }
@@ -196,11 +210,13 @@ function definitionsGen() {
   defBox2.dataset.defIndex = def2Counter
   def1Counter += 2
   def2Counter += 2
+  bringFromRight()
 }
 
 function addMoreButton() {
   let getMore = document.createElement("div")
   getMore.id = "get-more"
+  getMore.classList.add("bring-from-right")
   getMore.innerText = "more..."
   main.appendChild(getMore)
   getMore.addEventListener("click", definitionsGen)
@@ -209,7 +225,6 @@ function addMoreButton() {
 function addBackButton() {
   let goBack = document.createElement("button")
   goBack.id = "back"
-  // goBack.innerText = "Back to Search"
   let backImg = document.createElement("img")
   backImg.id = "back-img"
   backImg.src = "images/back.png"
@@ -227,3 +242,18 @@ function returnToBaseState() {
   document.body.style.justifyContent = "space-evenly"
   createBaseState()
 }
+
+// function hoverBlue(event) {
+//   const defContainers = document.querySelectorAll(".def-box-containers")
+//   const definitions = document.querySelectorAll(".definitions")
+//   const fwdIcons = document.querySelectorAll(".fwd-icon")
+//   defContainers.forEach((element) => {
+//     element.classList.toggle("sky-blue")
+//   })
+//   definitions.forEach((element) => {
+//     element.classList.toggle("sky-blue")
+//   })
+//   fwdIcons.forEach((element) => {
+//     element.classList.toggle("sky-blue")
+//   })
+// }
